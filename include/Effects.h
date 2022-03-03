@@ -1,6 +1,7 @@
 #ifndef _EFFECTS_H
 #define _EFFECTS_H
 #include "main.h"
+#include "DrawFunctions.h" 
 class Routine
 {
 public:
@@ -8,7 +9,8 @@ public:
 protected:
   bool loadingFlag = true;
 };
- std::unique_ptr<Routine> worker = nullptr;
+
+Routine* worker = nullptr;
 
 class EffFire:public Routine
 {

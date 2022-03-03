@@ -1,5 +1,4 @@
 #include "main.h"
-#include <EEPROM.h>
 // ----------- START ----------------- 
 void setup() {
   // STRIP

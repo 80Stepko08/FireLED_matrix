@@ -1,10 +1,11 @@
 #include "MatrixRunner.h"
 void changeEff(){
-	if(worker){
+	if(worker != nullptr){
+		delete worker;
 	}
 	switch(effect){
-		case 0: worker = std::unique_ptr<EffFire>(new EffFire());
-		case 1: worker = std::unique_ptr<EffWCube>(new EffWCube());
+		case 0: worker = new EffFire();
+		case 1: worker = new EffWCube();
 }}
 
 void MatrixRun(){

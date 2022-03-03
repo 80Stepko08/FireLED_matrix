@@ -13,9 +13,9 @@ PATH=%PATH%;%workdir%;%USERPROFILE%\.platformio\penv\Scripts;%PYTHONPATH%;
 :m1
 cls
 color 47
-Echo       ####             #      #####  ####
+Echo       #####            #      #####  ####
 Echo      #                #      #      #   #
-Echo     ##  #  ### ##    #      #####  #   # 
+Echo     ### #  ### ##    #      #####  #   # 
 Echo    #   #  #   ###   #      #      #   #
 Echo   #   #  #   ##    ###### #####  #### 
 Echo  #------------------------------------------#
@@ -40,9 +40,9 @@ Echo.
 Set /p choice="Your choice: "
 cls 
 color 0a
-Echo       ####             #      #####  ####
+Echo       #####            #      #####  ####
 Echo      #                #      #      #   #
-Echo     ##  #  ### ##    #      #####  #   # 
+Echo     ### #  ### ##    #      #####  #   # 
 Echo    #   #  #   ###   #      #      #   #
 Echo   #   #  #   ##    ###### #####  #### 
 Echo  #------------------------------------------#

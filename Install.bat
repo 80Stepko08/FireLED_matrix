@@ -19,7 +19,7 @@ Echo  #------------------------------------------#
 Echo  *  Remove Platformio installation   - (R)  *
 Echo  #------------------------------------------#
 Echo.
-Set /p choice="Your choice (Ваш выбор): "
+Set /p choice="Your choice: "
 
 if "%choice%"=="0" (
 	if not exist "%systemdrive%\Program Files (x86)" (

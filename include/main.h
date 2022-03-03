@@ -8,8 +8,8 @@
 #include "Arduino.h"
 #include "FastLED.h"
 #include "Constants.h"
-#include "DrawFunctions.h"
-#include "Effects.h"
+//#include "DrawFunctions.h"#include "Effects.h"
+
 #include "MatrixRunner.h"
 
 // ----------------- VARIABLES ------------------
