@@ -57,6 +57,5 @@ uint16_t XY(uint8_t x, uint8_t y)
 void drawPixelXY(uint8_t x, uint8_t y, CRGB color)
 {
   if (x < 0 || x > (WIDTH - 1) || y < 0 || y > (HEIGHT - 1)) return;
-  uint32_t thisPixel = XY((uint8_t)x, (uint8_t)y);
-    leds[thisPixel] = color;
+    leds[XY((uint8_t)x, (uint8_t)y)] = color;
 }

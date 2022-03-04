@@ -1,23 +1,20 @@
 #ifndef _EFFECTS_H
 #define _EFFECTS_H
-#include "main.h"
-#include "DrawFunctions.h" 
+#include "DrawFunctions.h"
 class Routine
 {
 public:
-  virtual bool run();
+  virtual void run();
 protected:
   bool loadingFlag = true;
 };
-
-Routine* worker = nullptr;
 
 class EffFire:public Routine
 {
 private:
  uint32_t t;
 public:
-bool run() override;	
+void run() override;	
 };
 
 class EffWCube:public Routine
@@ -31,7 +28,9 @@ struct {
   uint8_t Color;
 } Dot;
 public:
-bool run() override;	
+void run() override;	
 };
+void changeEff(byte eff);
+void DrawEffect();
 
 #endif

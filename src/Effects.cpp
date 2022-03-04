@@ -1,6 +1,6 @@
 #include "Effects.h"
-bool EffFire::run(){
-		  t += Speed;
+void EffFire::run(){
+		  EffFire::t += Speed;
   for (byte x = 0; x < WIDTH; x++) {
     for (byte y = 0; y < HEIGHT; y++) {
      
@@ -11,7 +11,7 @@ bool EffFire::run(){
   }
 };
 
-bool EffWCube::run()
+void EffWCube::run()
 {
   if (loadingFlag)
   {
@@ -62,3 +62,23 @@ bool EffWCube::run()
     for (uint8_t j = 0U; j < deltaValue; j++)
       drawPixelXY(Dot.PosX / 10 + i, Dot.PosY / 10 + j, CHSV(Dot.Color, 255, 255));
 };
+
+static Routine* worker = nullptr;
+void changeEff(byte eff){
+	if(worker != nullptr){
+		delete worker;
+	}
+	switch(eff){
+		case 0: worker = new EffFire();
+		case 1: worker = new EffWCube();
+}}
+
+void DrawEffect(){
+	worker->run();
+	 //EffFire eff;
+//Routine &a = eff;
+	//a.run();
+}
+
+void changeEff(byte eff);
+void DrawEffect();

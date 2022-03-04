@@ -4,7 +4,7 @@
 // ============================== SETTINGS ==================================
 // ---------------- MATRIX --------------
 //__________ BRIGHTNESS AND POWER ________
-#define BRIGHTNESS 200        // Brightness limit (0-255)
+#define BRIGHTNESS 50        // Brightness limit (0-255)
 #define CURRENT_LIMIT 2000    // mA (0 - off) 
 //_____________________ SIZE _____________
 #define WIDTH 16
@@ -23,8 +23,8 @@
 // ----------------- CONNECTING AND CONTROL ------------
 #define LED_PIN 4
 #define USE_BT
-#define MOSFET_PIN 5
-#define MOSFET_LEVEL HIGH
+//#define MOSFET_PIN 5
+//#define MOSFET_LEVEL HIGH
 //___________________ BUTTON _____________
 //#define USE_BUTTON
 #define BUTTON_PIN 2
@@ -77,7 +77,6 @@ static byte Speed = 198;
 #define LET_HEIGHT 8
 #define SPACE 1
 #define COL 2             // (0хRRGGBB/1- rainbow 2 - all different)
-extern byte currentMode;
 //-------------------- OTHER ---------------
 //#define DEBUG                // Not done
 //-------------------------------------------

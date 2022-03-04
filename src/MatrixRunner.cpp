@@ -1,18 +1,11 @@
 #include "MatrixRunner.h"
-void changeEff(){
-	if(worker != nullptr){
-		delete worker;
-	}
-	switch(effect){
-		case 0: worker = new EffFire();
-		case 1: worker = new EffWCube();
-}}
-
 void MatrixRun(){
 	if(Ch_Eff_flag){
-		changeEff();
+		changeEff(effect);
+		Ch_Eff_flag=0;
 	}
-	if(ONflag){worker->run();}
+	if(ONflag){DrawEffect();
+	}
 		
 	FastLED.show();
 }
