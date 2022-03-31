@@ -1,4 +1,5 @@
 #include "main.h"
+CRGB leds[NUM_LEDS];
 // ----------- START ----------------- 
 void setup() {
   // STRIP

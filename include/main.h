@@ -14,7 +14,7 @@
 
 // ----------------- VARIABLES ------------------
 #define NUM_LEDS WIDTH * HEIGHT
-static CRGB leds[NUM_LEDS];
+extern CRGB leds[NUM_LEDS];
 static byte effect = 0;
 static boolean ONflag = 1;
 static boolean Ch_Eff_flag = 1;

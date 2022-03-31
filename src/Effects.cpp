@@ -69,8 +69,8 @@ void changeEff(byte eff){
 		delete worker;
 	}
 	switch(eff){
-		case 0: worker = new EffFire();
-		case 1: worker = new EffWCube();
+		case 0: worker = new EffFire();break;
+		case 1: worker = new EffWCube();break;
 }}
 
 void DrawEffect(){
