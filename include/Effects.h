@@ -30,6 +30,22 @@ struct {
 public:
 void run() override;	
 };
+
+#define LIGHTERS_AM (max(WIDTH, HEIGHT))
+class EffNEXUS:public Routine
+{
+private:
+void DotReload(byte id);
+struct {
+  int16_t PosX, PosY;
+  int8_t SpeedX, SpeedY;
+  uint8_t Color;
+} Dot[LIGHTERS_AM];
+public:
+void run() override;
+};
+
+void deleteWPointer();
 void changeEff(byte eff);
 void DrawEffect();
 

@@ -63,22 +63,88 @@ void EffWCube::run()
       drawPixelXY(Dot.PosX / 10 + i, Dot.PosY / 10 + j, CHSV(Dot.Color, 255, 255));
 };
 
+void EffNEXUS::DotReload(byte id) {
+  Dot[id].SpeedY = random(0, 4); //Direction
+  Dot[id].Color = random();
+  switch (Dot[id].SpeedY) {
+    case 0:   // вверх
+      Dot[id].PosX = random(0, (WIDTH - 1) * 10); // Разбрасываем капли по ширине
+      Dot[id].PosY = 0;  // и по высоте
+      break;
+    case 1:   //  вниз
+      Dot[id].PosX = random(0, (WIDTH - 1) * 10); // Разбрасываем капли по ширине
+      Dot[id].PosY = (HEIGHT - 1) * 10; // и по высоте
+      break;
+    case 2:   // вправо
+      Dot[id].PosX = 0; // Разбрасываем капли по ширине
+      Dot[id].PosY = random(0, (HEIGHT - 1) * 10); // и по высоте
+      break;
+    case 3:   // влево
+      Dot[id].PosX = (WIDTH - 1) * 10; // Разбрасываем капли по ширине
+      Dot[id].PosY = random(0, (HEIGHT - 1) * 10); // и по высоте
+      break;
+    default:
+      break;
+  }
+}
+
+void EffNEXUS::run() {
+  if (loadingFlag) {
+    for (byte i = 0; i < LIGHTERS_AM; i++) {
+      DotReload(i);
+    }
+    loadingFlag = false;
+  }
+  fadeToBlackBy(leds, NUM_LEDS, 11);
+  for (byte i = 0; i < LIGHTERS_AM; i++) {
+    switch (Dot[i].SpeedY)
+    {
+      case 0:   // вверх
+        Dot[i].PosY += 2;
+        break;
+      case 1:   //  вниз
+        Dot[i].PosY -= 2;
+        break;
+      case 2:   // вправо
+        Dot[i].PosX += 2;
+        break;
+      case 3:   // влево
+        Dot[i].PosX -= 2;
+        break;
+      default:
+        break;
+    }
+    if (Dot[i].PosY < 0) {
+      DotReload(i);
+    }
+
+    if (Dot[i].PosY > (HEIGHT - 1) * 10) {
+      DotReload(i);
+    }
+    if (Dot[i].PosX < 0) {
+      DotReload(i);
+    }
+    if (Dot[i].PosX > (WIDTH - 1) * 10) {
+      DotReload(i);
+    }
+    drawPixelXY(Dot[i].PosX / 10, Dot[i].PosY / 10, CHSV(Dot[i].Color,255,255));
+  }
+}
+
 static Routine* worker = nullptr;
-void changeEff(byte eff){
+void deleteWPointer(){
 	if(worker != nullptr){
 		delete worker;
 	}
+}
+void changeEff(byte eff){
+	deleteWPointer();
 	switch(eff){
 		case 0: worker = new EffFire();break;
 		case 1: worker = new EffWCube();break;
+		case 2: worker = new EffNEXUS();break;
 }}
 
 void DrawEffect(){
 	worker->run();
-	 //EffFire eff;
-//Routine &a = eff;
-	//a.run();
 }
-
-void changeEff(byte eff);
-void DrawEffect();
