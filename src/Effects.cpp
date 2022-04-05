@@ -131,6 +131,89 @@ void EffNEXUS::run() {
   }
 }
 
+void EffConfetti::run(){
+    for (byte i = 0; i < 3; i++) {
+      byte x = random(0, WIDTH);
+      byte y = random(0, HEIGHT);
+      if (!leds[XY(x, y)])
+        leds[XY(x, y)] = CHSV(random(0, 255), 255, 255);
+}}
+
+  void EffRainbow::run(){
+    if (loadingFlag) {
+      loadingFlag = false;
+      byte mode = random()%3;
+    }
+    hue += 3;
+	switch (mode){
+    case 0:
+      for (byte i = 0; i < WIDTH; i++) {
+        CHSV thisColor = CHSV((byte)(hue + i * float(255 / WIDTH)), 255, 255);
+        for (byte j = 0; j < HEIGHT; j++)
+          drawPixelXY(i, j, thisColor);
+    }
+	break;
+    case 1:
+      for (byte j = 0; j < HEIGHT; j++) {
+        CHSV thisColor = CHSV((byte)(hue + j * float(255 / HEIGHT)), 255, 255);
+        for (byte i = 0; i < WIDTH; i++)
+          drawPixelXY(i, j, thisColor);
+    }
+    break;
+	case 2:
+	 for (byte x = 0; x < WIDTH; x++) {
+      for (byte y = 0; y < HEIGHT; y++) {
+        CHSV thisColor = CHSV((byte)(hue + (float)(WIDTH / HEIGHT * x + y) * (float)(255 / maxDim)), 255, 255);
+        drawPixelXY(x, y, thisColor); //leds[getPixelNumber(i, j)] = thisColor;
+      }
+    }
+	break;
+	
+}}
+
+  void EffFireflies::run() {
+    if (loadingFlag) {
+      loadingFlag = false;
+      for (byte j = 0; j < BALLS_AMOUNT; j++) {
+        int sign;
+
+        // забиваем случайными данными
+        coord[j][0] = WIDTH / 2 * 10;
+        random(0, 2) ? sign = 1 : sign = -1;
+        vector[j][0] = random(4, 15) * sign;
+        coord[j][1] = HEIGHT / 2 * 10;
+        random(0, 2) ? sign = 1 : sign = -1;
+        vector[j][1] = random(4, 15) * sign;
+        ballColors[j] = random(0, 9) * 28;
+      }
+    }
+    fadeToBlackBy(leds,NUM_LEDS,120);
+
+
+    // движение шариков
+    for (byte j = 0; j < BALLS_AMOUNT; j++) {
+      ballColors[j] ++;
+      // движение шариков
+      for (byte i = 0; i < 2; i++) {
+        coord[j][i] += vector[j][i];
+        if (coord[j][i] < 0) {
+          coord[j][i] = 0;
+          vector[j][i] = -vector[j][i];
+        }
+      }
+
+      if (coord[j][0] > (WIDTH - 1) * 10) {
+        coord[j][0] = (WIDTH - 1) * 10;
+        vector[j][0] = -vector[j][0];
+      }
+      if (coord[j][1] > (HEIGHT - 1) * 10) {
+        coord[j][1] = (HEIGHT - 1) * 10;
+        vector[j][1] = -vector[j][1];
+      }
+      leds[XY(coord[j][0] / 10, coord[j][1] / 10)] =  CHSV(ballColors[j], 255, 255);
+    }
+ }
+
 static Routine* worker = nullptr;
 void deleteWPointer(){
 	if(worker != nullptr){
@@ -143,6 +226,9 @@ void changeEff(byte eff){
 		case 0: worker = new EffFire();break;
 		case 1: worker = new EffWCube();break;
 		case 2: worker = new EffNEXUS();break;
+		case 3: worker = new EffConfetti();break;
+		case 4: worker = new EffRainbow();break;
+		case 5: worker = new EffFireflies();break;
 }}
 
 void DrawEffect(){

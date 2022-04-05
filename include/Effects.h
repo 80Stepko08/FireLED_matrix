@@ -45,6 +45,31 @@ public:
 void run() override;
 };
 
+class EffConfetti:public Routine
+{
+public:
+void run() override;
+};
+
+class EffRainbow:public Routine
+{
+private:
+byte hue,mode;
+public:
+void run() override;
+};
+
+#define BALLS_AMOUNT max(WIDTH,HEIGHT)/4
+class EffFireflies:public Routine
+{
+private:
+int coord[BALLS_AMOUNT][2];
+int8_t vector[BALLS_AMOUNT][2];
+uint8_t ballColors[BALLS_AMOUNT];
+public:
+void run() override;
+};
+
 void deleteWPointer();
 void changeEff(byte eff);
 void DrawEffect();

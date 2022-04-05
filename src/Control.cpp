@@ -1,6 +1,8 @@
 #include "Control.h"
+#ifdef USE_BUTTON
 static InterruptDrivenButton button(BTN_PIN);
 DEFINE_IDB_ISR(button);
+#endif
 void changePower(byte mode = 2){
 	switch(mode){
 	case 0:ONflag = 0;break;
