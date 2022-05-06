@@ -20,16 +20,11 @@
 #define SEGMENTS 1
 //#define XY_MAPPING
 // ----------------- CONNECTING AND CONTROL ------------
-#define LED_PIN 4
+#define LED_PIN 10
 //___________________ BUTTON _____________
 #define USE_BUTTON
 #define BTN_PIN 3
-#define BUT_PULL HIGH_PULL
+#define BTN_PULL 0
 #define NUM_EFFECTS 3
 //________________________________________
-
-//-------------------- EFFECTS --------------
-static byte Brightness = 5;
-static byte Speed = 19;
-//===========================================
 #endif

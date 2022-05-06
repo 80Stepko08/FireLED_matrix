@@ -137,7 +137,9 @@ void EffConfetti::run(){
       byte y = random(0, HEIGHT);
       if (!leds[XY(x, y)])
         leds[XY(x, y)] = CHSV(random(0, 255), 255, 255);
-}}
+}
+fadeToBlackBy(leds,NUM_LEDS,64);
+}
 
   void EffRainbow::run(){
     if (loadingFlag) {

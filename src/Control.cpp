@@ -1,7 +1,6 @@
 #include "Control.h"
 #ifdef USE_BUTTON
-static InterruptDrivenButton button(BTN_PIN);
-DEFINE_IDB_ISR(button);
+Sbutton btn(BTN_PIN, BTN_PULL);
 #endif
 void changePower(byte mode = 2){
 	switch(mode){
@@ -33,57 +32,20 @@ void changePower(byte mode = 2){
 }
 }
 void LoadC_Settings(){
-	#ifdef USE_BUTTON
-	button.setup(IDB_ISR(button));
-	#endif
 }
 void Control(){
-	
-	if (!button.hasEvent()) {
-        return;
-    }
-
-    InterruptDrivenButtonEvent event = button.pollEvent();
-    if (!event.type) {
-        return;
-    }
-
-    if (event.type == IDB_EVENT_CLICKS) {
-        switch (event.clicks) {
-            case 1:
-                changePower();
-                break;
-
-            case 2:
-                if (!ONflag) {
-                    return;
-                }
-
-                // следующий эффект
-                if (effect == NUM_EFFECTS - 1) {
-                    effect = 0;
-                } else {
-                    effect++;
-                }
-                changeEff(effect);
-                break;
-
-            case 3:
-                if (!ONflag) {
-                    return;
-                }
-
-                // предыдущий эффект
-                if (effect == 0) {
-                     effect = NUM_EFFECTS - 1;
-                } else {
-                     effect--;
-                }
-				changeEff(effect);
-                break;
-
-}}}
+ if(btn.hasSingle()){
+	 changePower();
+ }
+ if(btn.hasDouble()){
+	 if(ONflag){
+		 effect++;
+		 if(effect>NUM_EFFECTS) effect = 0;
+		changeEff(effect);
+	 }
+ }
+}
 
 void ButtonTick(){
-	button.loop();
+	btn.tick();
 }

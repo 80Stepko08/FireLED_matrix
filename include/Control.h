@@ -1,7 +1,10 @@
 #ifndef CONTROL_H
 #define CONTROL_H
 #include "main.h"
-void LoadC_Settings();
-void Control();
-void ButtonTick();
+static boolean ONflag = 1;
+static byte Brightness = 5;
+static byte Speed = 19;
+static byte effect;
+extern void Control();
+extern void ButtonTick();
 #endif
