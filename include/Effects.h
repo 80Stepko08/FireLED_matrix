@@ -1,6 +1,10 @@
 #ifndef _EFFECTS_H
 #define _EFFECTS_H
 #include "DrawFunctions.h"
+static boolean ONflag = 1;
+static byte Brightness = 5;
+static byte Speed = 19;
+static byte effect = 0;
 class Routine
 {
 public:

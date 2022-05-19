@@ -1,5 +1,5 @@
 #ifndef _MATRIXRUNNER_H
 #define _MATRIXRUNNER_H
-#include "Effects.h"
+#include "Control.h"
 void MatrixRun();
 #endif

@@ -1,7 +1,8 @@
 #include "MatrixRunner.h"
 void MatrixRun(){
 	Control();
-	if(ONflag){DrawEffect();
+	if(ONflag){
+		DrawEffect();
 	}
 	FastLED.show();
 }

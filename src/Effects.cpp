@@ -225,12 +225,12 @@ void deleteWPointer(){
 void changeEff(byte eff){
 	deleteWPointer();
 	switch(eff){
-		case 0: worker = new EffFire();break;
 		case 1: worker = new EffWCube();break;
 		case 2: worker = new EffNEXUS();break;
 		case 3: worker = new EffConfetti();break;
 		case 4: worker = new EffRainbow();break;
 		case 5: worker = new EffFireflies();break;
+		default: worker = new EffFire();break;
 }}
 
 void DrawEffect(){

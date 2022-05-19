@@ -8,8 +8,7 @@ void setup() {
 	randomSeed(analogRead(0));
 	FastLED.clear();
 	FastLED.show();
-	changeEff(random()%6
-	);
+	changeEff(effect);
 #if defined(MOSFET_PIN) && defined(MOSFET_LEVEL)          // установка сигнала в пин, управляющий MOSFET транзистором, соответственно состоянию вкл/выкл матрицы
   digitalWrite(MOSFET_PIN, ONflag ? MOSFET_LEVEL : !MOSFET_LEVEL);
 #endif

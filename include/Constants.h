@@ -1,13 +1,12 @@
 ﻿#ifndef __CONSTANTS_H
 #define __CONSTANTS_H
-#include <Arduino.h>
 // ============================== SETTINGS ==================================
 // ---------------- MATRIX --------------
 //__________ BRIGHTNESS AND POWER ________
 #define BRIGHTNESS 50        // Brightness limit (0-255)
 #define CURRENT_LIMIT 2000    // mA (0 - off) 
 //_____________________ SIZE _____________
-#define WIDTH 16
+#define WIDTH 8
 #define HEIGHT 8
 #define NUM_LEDS WIDTH * HEIGHT
 //_____________________ COLOR ______________
@@ -20,10 +19,10 @@
 #define SEGMENTS 1
 //#define XY_MAPPING
 // ----------------- CONNECTING AND CONTROL ------------
-#define LED_PIN 10
+#define LED_PIN 4
 //___________________ BUTTON _____________
 #define USE_BUTTON
-#define BTN_PIN 3
+#define BTN_PIN 6
 #define BTN_PULL 0
 #define NUM_EFFECTS 3
 //________________________________________

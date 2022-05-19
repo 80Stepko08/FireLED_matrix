@@ -1,51 +1,49 @@
 #include "Control.h"
+#include "SButton.h"
 #ifdef USE_BUTTON
 Sbutton btn(BTN_PIN, BTN_PULL);
 #endif
+bool changeDir = 1;
 void changePower(byte mode = 2){
 	switch(mode){
 	case 0:ONflag = 0;break;
 	case 1:ONflag = 1;break;
-	default:ONflag = !ONflag;break;
+	default:ONflag = !ONflag;break;}
     if (ONflag) {
-        uint8_t brightness = Brightness;
-        for (int i = 0; i < brightness; i += 8) {
-            FastLED.setBrightness(i);
-            delay(1);
-            FastLED.show();
-        }
-        FastLED.setBrightness(brightness);
-		
+		changeEff(effect);
     } else {
-        uint8_t brightness = Brightness;
-        for (int i = brightness; i > 8; i -= 8) {
-            FastLED.setBrightness(i);
-            delay(1);
-            FastLED.show();
-        }
 		deleteWPointer();
         FastLED.clear();
     }
-
     delay(2);
     FastLED.show();
 }
-}
+
 void LoadC_Settings(){
 }
 void Control(){
+	btn.tick();
  if(btn.hasSingle()){
 	 changePower();
  }
  if(btn.hasDouble()){
 	 if(ONflag){
 		 effect++;
-		 if(effect>NUM_EFFECTS) effect = 0;
+		 if(effect>=NUM_EFFECTS) effect = 0;
 		changeEff(effect);
 	 }
  }
-}
-
-void ButtonTick(){
-	btn.tick();
+  if(btn.hasTriple()){
+	 if(ONflag){
+		 if(effect<= 0) effect = NUM_EFFECTS-1;
+		 else effect--;
+		changeEff(effect);
+	 }
+ }
+ if(btn.isHeld()){
+ changeDir =! changeDir;}
+ if(btn.isHold())
+	 switch(btn.hasClicksWithHold()){
+		 case 0: Brightness = constrain(Brightness + (Brightness / 25 + 1) * (changeDir * 2 - 1), 1 , 255); FastLED.setBrightness(Brightness); break;
+	 case 1: Speed = constrain(Speed + (Speed/ 25 + 1) * (changeDir * 2 - 1), 1 , 255); break;}
 }
